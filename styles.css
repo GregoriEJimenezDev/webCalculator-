@@ -1,0 +1,546 @@
+/* ==========================================================================
+   CSS3 DESIGN SYSTEM: PREMIUM GLASSMORPHISM & NEUMORPHISM
+   ========================================================================== */
+
+/* Variables y Reseteo */
+:root {
+  --font-main: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  /* Paleta de Colores Modernos */
+  --bg-gradient-start: #0a0d14;
+  --bg-gradient-end: #141724;
+  
+  --panel-bg: rgba(23, 27, 41, 0.65);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-shadow: rgba(0, 0, 0, 0.4);
+  
+  --screen-bg: rgba(10, 11, 18, 0.95);
+  --screen-border: rgba(255, 255, 255, 0.05);
+  
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+  
+  /* Botones y Acentos */
+  --btn-num-bg: rgba(38, 44, 64, 0.5);
+  --btn-num-hover: rgba(52, 60, 87, 0.7);
+  --btn-num-border: rgba(255, 255, 255, 0.05);
+  
+  --btn-op-bg: linear-gradient(135deg, #6366f1, #4f46e5);
+  --btn-op-hover: linear-gradient(135deg, #818cf8, #6366f1);
+  --btn-op-shadow: rgba(99, 102, 241, 0.3);
+  
+  --btn-action-bg: linear-gradient(135deg, #f43f5e, #e11d48);
+  --btn-action-hover: linear-gradient(135deg, #fb7185, #f43f5e);
+  --btn-action-shadow: rgba(244, 63, 94, 0.3);
+  
+  --btn-eq-bg: linear-gradient(135deg, #06b6d4, #0891b2);
+  --btn-eq-hover: linear-gradient(135deg, #22d3ee, #06b6d4);
+  --btn-eq-shadow: rgba(6, 182, 212, 0.3);
+
+  /* Transiciones y Bordes */
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --transition-normal: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-tactile: all 0.1s ease;
+}
+
+/* Configuración Básica */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-main);
+  background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+/* Cabecera */
+.app-header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.5));
+}
+
+.logo h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Contenedor Principal (Calculadora + Historial) */
+.app-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  perspective: 1000px;
+}
+
+/* Tarjetas con Efecto Glassmorphism */
+.calculator-card, .history-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px var(--panel-shadow), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: var(--transition-normal);
+}
+
+/* Hover sutil en tarjetas para efecto 3D */
+.calculator-card:hover, .history-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 1. SECCIÓN DE LA CALCULADORA */
+.calculator-card {
+  flex: 1.1;
+  max-width: 420px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Pantalla / Display */
+.calculator-screen {
+  background: var(--screen-bg);
+  border-bottom: 1px solid var(--screen-border);
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-height: 140px;
+  gap: 8px;
+  position: relative;
+  box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Resplandor decorativo de pantalla */
+.calculator-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.screen-expression {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  min-height: 24px;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: right;
+  max-width: 100%;
+  opacity: 0.85;
+}
+
+.screen-value {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: right;
+  max-width: 100%;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+/* Botonera / Keypad */
+.calculator-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 68px;
+  gap: 12px;
+  padding: 24px;
+}
+
+/* Botón Genérico */
+.btn {
+  border: none;
+  outline: none;
+  font-family: var(--font-main);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition-normal);
+  user-select: none;
+  position: relative;
+}
+
+/* Tacto de pulsación */
+.btn:active {
+  transform: scale(0.92);
+  transition: var(--transition-tactile);
+}
+
+/* Botones Numéricos (Gris Oscuro) */
+.btn-number {
+  background: var(--btn-num-bg);
+  border: 1px solid var(--btn-num-border);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.btn-number:hover {
+  background: var(--btn-num-hover);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Botones de Operadores (Azul/Violeta) */
+.btn-operator {
+  background: var(--btn-op-bg);
+  box-shadow: 0 4px 10px var(--btn-op-shadow);
+}
+
+.btn-operator:hover {
+  background: var(--btn-op-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--btn-op-shadow);
+}
+
+/* Botones de Acción (Limpiar, Borrar) */
+.btn-action {
+  background: var(--btn-action-bg);
+  box-shadow: 0 4px 10px var(--btn-action-shadow);
+}
+
+.btn-action:hover {
+  background: var(--btn-action-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--btn-action-shadow);
+}
+
+/* Botón de Igual (Celeste) */
+.btn-equals {
+  background: var(--btn-eq-bg);
+  box-shadow: 0 4px 12px var(--btn-eq-shadow);
+  grid-row: span 2;
+  height: 100%;
+}
+
+.btn-equals:hover {
+  background: var(--btn-eq-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--btn-eq-shadow);
+}
+
+/* Ajustes de columnas */
+.btn-zero {
+  grid-column: span 2;
+}
+
+/* 2. SECCIÓN DEL HISTORIAL */
+.history-card {
+  flex: 0.9;
+  max-width: 380px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.history-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--panel-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.history-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--color-text-primary);
+}
+
+/* Botón Borrar Historial */
+.btn-clear-history {
+  background: transparent;
+  border: 1px solid rgba(244, 63, 94, 0.4);
+  color: #f43f5e;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-normal);
+}
+
+.btn-clear-history:hover {
+  background: rgba(244, 63, 94, 0.1);
+  border-color: #f43f5e;
+  transform: translateY(-1px);
+}
+
+.btn-clear-history:active {
+  transform: scale(0.96);
+  transition: var(--transition-tactile);
+}
+
+/* Contenido del Historial */
+.history-content {
+  flex: 1;
+  padding: 16px 24px 24px 24px;
+  overflow-y: auto;
+  position: relative;
+  min-height: 250px;
+}
+
+/* Lista de operaciones */
+.history-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  animation: slideIn 0.3s ease-out;
+  transition: var(--transition-normal);
+  cursor: pointer;
+}
+
+.history-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.06);
+  transform: translateX(-2px);
+}
+
+.history-item-expr {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.history-item-res {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #06b6d4;
+}
+
+/* Scrollbar Personalizado */
+.history-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.history-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Estado de Historial Vacío */
+.history-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+  color: var(--color-text-muted);
+  opacity: 0.8;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.empty-icon {
+  font-size: 2.2rem;
+  filter: grayscale(0.5);
+  opacity: 0.5;
+}
+
+.history-empty p {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Pie de Página */
+.app-footer {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.app-footer p {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.2px;
+}
+
+/* ==========================================================================
+   ANIMACIONES
+   ========================================================================== */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ==========================================================================
+   DISEÑO RESPONSIVO (MOBILE FIRST & BREAKPOINTS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .app-header {
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .logo h1 {
+    font-size: 1.8rem;
+  }
+  
+  .app-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .calculator-card, .history-card {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .calculator-keypad {
+    grid-auto-rows: 62px;
+    padding: 16px;
+    gap: 10px;
+  }
+  
+  .btn {
+    font-size: 1.25rem;
+  }
+  
+  .history-content {
+    min-height: 200px;
+    max-height: 300px; /* Limita la altura en móvil con scrollbar */
+  }
+}
+
+@media (max-width: 360px) {
+  .calculator-keypad {
+    grid-auto-rows: 55px;
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .btn {
+    font-size: 1.15rem;
+    border-radius: var(--radius-sm);
+  }
+  
+  .calculator-screen {
+    padding: 20px 16px;
+    min-height: 110px;
+  }
+  
+  .screen-value {
+    font-size: 2.2rem;
+  }
+}

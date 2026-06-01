@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculadora interactiva moderna con historial persistente en localStorage. Diseñada con principios SOLID y arquitectura limpia en ES5.">
+  <title>Calculadora Interactiva Pro</title>
+  <!-- Fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cabecera de la aplicación -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">🎛️</span>
+        <h1>CalcuPro</h1>
+      </div>
+      <p class="subtitle">Calculadora Interactiva de Alta Precisión</p>
+    </div>
+  </header>
+
+  <!-- Contenedor principal de la aplicación -->
+  <main class="app-container" id="app-root">
+    
+    <!-- Sección de la Calculadora -->
+    <section class="calculator-card" aria-label="Calculadora">
+      <!-- Pantalla / Display -->
+      <div class="calculator-screen">
+        <div class="screen-expression" id="screen-expression" aria-live="polite" aria-label="Expresión actual"></div>
+        <div class="screen-value" id="screen-value" aria-live="polite" aria-label="Valor actual">0</div>
+      </div>
+
+      <!-- Botonera de la Calculadora -->
+      <div class="calculator-keypad">
+        <!-- Fila 1 -->
+        <button class="btn btn-action" id="btn-clear" data-action="clear" aria-label="Limpiar todo">C</button>
+        <button class="btn btn-action" id="btn-backspace" data-action="backspace" aria-label="Borrar último dígito">⌫</button>
+        <button class="btn btn-operator" data-operator="/" aria-label="Dividir">÷</button>
+        <button class="btn btn-operator" data-operator="*" aria-label="Multiplicar">×</button>
+
+        <!-- Fila 2 -->
+        <button class="btn btn-number" data-number="7">7</button>
+        <button class="btn btn-number" data-number="8">8</button>
+        <button class="btn btn-number" data-number="9">9</button>
+        <button class="btn btn-operator" data-operator="-" aria-label="Restar">−</button>
+
+        <!-- Fila 3 -->
+        <button class="btn btn-number" data-number="4">4</button>
+        <button class="btn btn-number" data-number="5">5</button>
+        <button class="btn btn-number" data-number="6">6</button>
+        <button class="btn btn-operator" data-operator="+" aria-label="Sumar">+</button>
+
+        <!-- Fila 4 y 5 combinadas usando grid-area -->
+        <button class="btn btn-number" data-number="1">1</button>
+        <button class="btn btn-number" data-number="2">2</button>
+        <button class="btn btn-number" data-number="3">3</button>
+        
+        <!-- Botón igual (=) con doble altura -->
+        <button class="btn btn-equals" id="btn-equals" data-action="equals" aria-label="Calcular resultado">=</button>
+
+        <!-- Botón 0 con doble ancho y punto decimal -->
+        <button class="btn btn-number btn-zero" data-number="0">0</button>
+        <button class="btn btn-number" data-decimal="." aria-label="Punto decimal">.</button>
+      </div>
+    </section>
+
+    <!-- Sección del Historial de Operaciones -->
+    <section class="history-card" aria-labelledby="history-title">
+      <div class="history-header">
+        <h2 id="history-title">Historial de Operaciones</h2>
+        <button class="btn-clear-history" id="btn-clear-history" aria-label="Borrar todo el historial">
+          <span>🗑️</span> Borrar Historial
+        </button>
+      </div>
+      
+      <!-- Contenedor del listado de historial -->
+      <div class="history-content">
+        <ul class="history-list" id="history-list">
+          <!-- Los elementos del historial se inyectarán de forma dinámica aquí -->
+        </ul>
+        <!-- Estado vacío del historial -->
+        <div class="history-empty" id="history-empty">
+          <div class="empty-icon">📂</div>
+          <p>No hay operaciones recientes</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="app-footer">
+    <p>&copy; 2026 CalcuPro. Todos los derechos reservados. Desarrollado con sintaxis limpia ES5 por Gregori E. Jimenez 2025-1232.</p>
+  </footer>
+
+  <!-- Lógica Javascript -->
+  <script src="script.js"></script>
+</body>
+</html>
