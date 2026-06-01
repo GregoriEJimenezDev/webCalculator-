@@ -1,0 +1,20 @@
+{
+  "name": "calculadora-web-historial",
+  "version": "1.0.0",
+  "description": "Calculadora Interactiva con Historial en localStorage utilizando HTML5, CSS3 y JS ES5 con arquitectura limpia.",
+  "main": "script.js",
+  "scripts": {
+    "start": "npx http-server -p 8080 -o"
+  },
+  "keywords": [
+    "calculator",
+    "clean-architecture",
+    "solid",
+    "es5"
+  ],
+  "author": "CalcuPro Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
